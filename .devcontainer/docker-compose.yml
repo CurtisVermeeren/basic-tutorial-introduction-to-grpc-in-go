@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   go-app:
-    container_name: go-devcontainer-scaffold
+    container_name: basic-introduction-to-grpc-in-go
     build: .
     volumes:
       - ../:/app:cached

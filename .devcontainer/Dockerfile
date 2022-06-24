@@ -14,6 +14,13 @@ RUN go install github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest \ 
     && go install golang.org/x/tools/gopls@latest \
     && GO111MODULE=on go install golang.org/x/tools/gopls@latest
+
+# Setup gRPC
+RUN apt update
+RUN apt install -y protobuf-compiler
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28 \ 
+    && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+RUN export PATH="$PATH:$(go env GOPATH)/bin"
     
 # Uses "robbyrussell" theme (original Oh My Zsh theme), with no plugins
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.2/zsh-in-docker.sh)" -- \
